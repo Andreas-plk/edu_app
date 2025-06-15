@@ -50,6 +50,8 @@ const  QuizForm = ({category,difficulty}:{category:string, difficulty:string}) =
             return 6;
         } else if (difficulty === 'HARD') {
             return 12;
+        }else if (difficulty==='SECRET') {
+            return 100;
         }
         return 0;
     }
@@ -103,6 +105,10 @@ const  QuizForm = ({category,difficulty}:{category:string, difficulty:string}) =
                 break
             case "Καλλιμάρμαρο":
                 router.push("/quiz/results");
+                break;
+            case "SECRET":
+                router.push("/quiz/results");
+
         }
     }
     const findUnit=(category:string) => {
@@ -112,6 +118,8 @@ const  QuizForm = ({category,difficulty}:{category:string, difficulty:string}) =
                 return "unit2";
             case "Καλλιμάρμαρο":
                 return "unit3";
+            case "SECRET":
+                return "unit1";
         }
         return "";
     }

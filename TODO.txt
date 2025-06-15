@@ -1,5 +1,0 @@
-Set quiz level based on previous attempts //οκ
-Save results //ok
-Make dashboard to display results //ok
-
-

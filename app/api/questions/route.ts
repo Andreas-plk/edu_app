@@ -15,7 +15,7 @@ export async function GET(req:Request)
     const category = searchParams.get('category');
     const difficulty = searchParams.get('difficulty')||"";
 
-    if (!category || !["EASY",'MEDIUM','HARD'].includes(difficulty)) {
+    if (!category || !["EASY",'MEDIUM','HARD','SECRET'].includes(difficulty)) {
 
         return NextResponse.json({ error: 'Invalid query' }, { status: 400 });
     }
@@ -23,6 +23,17 @@ export async function GET(req:Request)
         const all = await prisma.question.findMany({
             where: {
                 category: { name: category },
+                difficulty: level,
+            },
+            include: { options: true },
+        });
+
+        return shuffleArray(all).slice(0, take);
+    };
+
+    const getSecretQuestions = async (level: Difficulty, take: number) => {
+        const all = await prisma.question.findMany({
+            where: {
                 difficulty: level,
             },
             include: { options: true },
@@ -44,6 +55,9 @@ export async function GET(req:Request)
         const medium = await getRandomQuestions('MEDIUM', 3);
         const hard = await getRandomQuestions('HARD', 2);
         questions = [...medium, ...hard];
+    }else if (difficulty === "SECRET") {
+        questions = await getSecretQuestions("HARD",6);
+
     }
 
     // Τυχαία τελική σειρά

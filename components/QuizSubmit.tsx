@@ -10,6 +10,7 @@ import {useQuiz} from "@/context/QuizContext"
 const QuizSubmit = ({Id}:{Id:string}) => {
     const {answers} = useQuiz()
     const score = () => {
+        if(answers>=100) return answers-100;
         if (answers >= 36) return answers - 36;
         if (answers >= 18) return answers - 18;
         return answers;
@@ -30,7 +31,7 @@ const QuizSubmit = ({Id}:{Id:string}) => {
 
     }, [answers,Id]);
     return (
-        <div className="flex items-center justify-center text-3xl">Τελικό αποτέλεσμα: {score()}/ 15</div>
+        <div className="flex items-center justify-center text-3xl">Τελικό αποτέλεσμα: {score()} {answers<100 ? (<span>/15</span>) :(<span>/6</span>)}</div>
 
 
     )
