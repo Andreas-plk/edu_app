@@ -43,7 +43,7 @@ const Page = async () => {
     return (
         <div className="flex flex-col items-center justify-center">
             <h2 className="font-extrabold underline text-3xl my-4 text-shadow-lg/20">ΑΠΟΤΕΛEΣΜΑΤΑ</h2>
-            {maxScore && maxScore>=51 ?(
+            {maxScore && maxScore>=51?(
                 <p className="flex flex-col text-center items-center justify-center">Ωπ.. σαν να τα πηγαίνεις πολύ καλά.<br/> Φαίνεται πως ξεκλύδωσες ένα μυστικό Quiz.<br/> Τολμάς να το δοκιμάσεις;
                 <Button className="button-style my-5"><Link href="/quiz/secretQuiz">Μυστικό Quiz</Link></Button></p>)
 

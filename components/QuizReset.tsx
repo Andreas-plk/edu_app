@@ -9,7 +9,7 @@ const QuizReset = () => {
     const { reset } = useQuiz();
 
     useEffect(() => {
-        if (pathname === "/") {
+        if (pathname === "/" || pathname === "/dashboard")  {
             reset();
         }
     }, [pathname]);
